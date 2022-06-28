@@ -6,14 +6,14 @@
     Title="About">
     <Grid RowDefinitions="Auto,*">
         <Image
-            Background="{OnPlatform iOS=LightSlateGray,
-                                    Android=#2196F3}"
-            HeightRequest="128"
+            BackgroundColor="{StaticResource AppPrimaryColor}"
+            HeightRequest="100"
+            Opacity="0.85"
             Source="logo.png"
             VerticalOptions="Center" />
         <StackLayout
             Grid.Row="1"
-            Margin="20"
+            Margin="{StaticResource PageMargin}"
             Spacing="20">
             <Label FontSize="22">
                 <Label.FormattedText>
@@ -30,7 +30,9 @@
             </Label>
             <Label Text="这是一个使用Xamarin写的小程序，用来保存平时的想法和待做的事情！" />
             <Label Text="此版本将数据存储改成数据库的形式！" />
-            <Button Clicked="OnButtonClicked" Text="打赏我吧" />
+            <Label Text="如果你觉得有用的话，可以给我一点打赏哦！！" />
+            <Image HeightRequest="200" Source="pay_for_me.jpg" />
+            <Button Clicked="OnButtonClicked" Text="访问我的Github" />
         </StackLayout>
     </Grid>
 </ContentPage>

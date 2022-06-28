@@ -4,7 +4,12 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Note Entry">
-    <StackLayout>
+    <ContentPage.Resources>
+        <Style TargetType="{x:Type Editor}">
+            <Setter Property="BackgroundColor" Value="{StaticResource AppBackgroundColor}" />
+        </Style>
+    </ContentPage.Resources>
+    <StackLayout Margin="{StaticResource PageMargin}">
         <Editor
             HeightRequest="100"
             Placeholder="Enter your note"

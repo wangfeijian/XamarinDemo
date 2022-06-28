@@ -2,4 +2,25 @@
 <Application
     x:Class="Notes.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" />
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Application.Resources>
+        <Thickness x:Key="PageMargin">20</Thickness>
+
+        <Color x:Key="AppPrimaryColor">#1976D2</Color>
+        <Color x:Key="AppBackgroundColor">AliceBlue</Color>
+        <Color x:Key="PrimaryColor">Black</Color>
+        <Color x:Key="SecondaryColor">White</Color>
+        <Color x:Key="TertiaryColor">Silver</Color>
+
+        <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
+            <Setter Property="BackgroundColor" Value="{StaticResource AppBackgroundColor}" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="BackgroundColor" Value="{StaticResource AppPrimaryColor}" />
+            <Setter Property="TextColor" Value="{StaticResource SecondaryColor}" />
+            <Setter Property="CornerRadius" Value="5" />
+        </Style>
+    </Application.Resources>
+</Application>
