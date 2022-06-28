@@ -18,25 +18,11 @@ namespace Notes.Views
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-            var notes = new List<Note>();
-
-            var files = Directory.EnumerateFiles(App.FolderPath, "*.notes.txt");
-
-            foreach (var file in files)
-            {
-                notes.Add(new Note
-                {
-                    FileName = file,
-                    Text = File.ReadAllText(file),
-                    Date = File.GetCreationTime(file)
-                });
-            }
-
-            collectionView.ItemsSource = notes.OrderBy(d => d.Date).ToList();
+            collectionView.ItemsSource = await App.Database.GetNoteAsync();
         }
 
         async void OnAddClicked(object sender, EventArgs e)
@@ -49,7 +35,7 @@ namespace Notes.Views
            if(e.CurrentSelection != null)
             {
                 Note note = (Note)e.CurrentSelection.FirstOrDefault();
-                await Shell.Current.GoToAsync($"{nameof(NoteEntryPage)}?{nameof(NoteEntryPage.ItemId)}={note.FileName}");
+                await Shell.Current.GoToAsync($"{nameof(NoteEntryPage)}?{nameof(NoteEntryPage.ItemId)}={note.Id.ToString()}");
             }
         }
     }

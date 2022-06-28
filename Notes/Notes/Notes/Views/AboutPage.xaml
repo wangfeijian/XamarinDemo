@@ -23,12 +23,13 @@
                                 FontAttributes="Bold"
                                 FontSize="22"
                                 Text="Notes" />
-                            <Span Text=" v1.0" />
+                            <Span Text=" v1.1" />
                         </FormattedString.Spans>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
             <Label Text="这是一个使用Xamarin写的小程序，用来保存平时的想法和待做的事情！" />
+            <Label Text="此版本将数据存储改成数据库的形式！" />
             <Button Clicked="OnButtonClicked" Text="打赏我吧" />
         </StackLayout>
     </Grid>
