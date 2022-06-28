@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Notes.Views.AboutPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="About">
+    <Grid RowDefinitions="Auto,*">
+        <Image
+            Background="{OnPlatform iOS=LightSlateGray,
+                                    Android=#2196F3}"
+            HeightRequest="128"
+            Source="logo.png"
+            VerticalOptions="Center" />
+        <StackLayout
+            Grid.Row="1"
+            Margin="20"
+            Spacing="20">
+            <Label FontSize="22">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span
+                                FontAttributes="Bold"
+                                FontSize="22"
+                                Text="Notes" />
+                            <Span Text=" v1.0" />
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="这是一个使用Xamarin写的小程序，用来保存平时的想法和待做的事情！" />
+            <Button Clicked="OnButtonClicked" Text="打赏我吧" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
