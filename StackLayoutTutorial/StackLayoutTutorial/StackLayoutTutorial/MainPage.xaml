@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="StackLayoutTutorial.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <StackLayout Margin="20,35,20,25">
+        <!--<Label
+            BackgroundColor="Gray"
+            HorizontalOptions="Start"
+            Text="Start" />
+        <Label
+            BackgroundColor="Gray"
+            HorizontalOptions="Center"
+            Text="Center" />
+        <Label
+            BackgroundColor="Gray"
+            HorizontalOptions="End"
+            Text="End" />
+        <Label
+            BackgroundColor="Gray"
+            HorizontalOptions="Fill"
+            Text="Fill" />
+        <Label
+            BackgroundColor="Gray"
+            Text="StartAndExpand"
+            VerticalOptions="StartAndExpand" />
+        <Label
+            BackgroundColor="Gray"
+            Text="CenterAndExpand"
+            VerticalOptions="CenterAndExpand" />
+        <Label
+            BackgroundColor="Gray"
+            Text="EndAndExpand"
+            VerticalOptions="EndAndExpand" />
+        <Label
+            BackgroundColor="Gray"
+            Text="FillAndExpand"
+            VerticalOptions="FillAndExpand" />-->
+        <Label
+            FontAttributes="Italic"
+            FontSize="22"
+            HorizontalOptions="Center"
+            Text="Welcome to Xamarin.Forms!"
+            TextColor="Blue"
+            TextDecorations="Underline" />
+        <Label FontSize="Medium" TextColor="Gray">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="这个句子包含了" />
+                    <Span
+                        FontAttributes="Italic"
+                        Text="红色的斜体字"
+                        TextColor="Red" />
+                    <Span
+                        Text="和蓝色的下划线字体"
+                        TextColor="Blue"
+                        TextDecorations="Underline" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Button
+            BackgroundColor="Aqua"
+            BorderColor="Red"
+            BorderWidth="5"
+            Clicked="OnButtonClicked"
+            CornerRadius="5"
+            HeightRequest="75"
+            HorizontalOptions="Center"
+            Text="Click Me"
+            TextColor="Blue"
+            WidthRequest="250" />
+        <Entry
+            IsPassword="True"
+            IsSpellCheckEnabled="False"
+            IsTextPredictionEnabled="False"
+            MaxLength="6"
+            Placeholder="Enter password" />
+        <Editor AutoSize="TextChanges" Placeholder="Enter multi-line text here" />
+        <!--<Image
+            Aspect="Fill"
+            HeightRequest="300"
+            Source="https://www.hexacta.com/wp-content/uploads/2016/03/xamarin.jpg" />-->
+        <CollectionView
+            ItemsSource="{Binding Monkeys}"
+            SelectionChanged="OnSelectionChanged"
+            SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        Padding="10"
+                        ColumnDefinitions="Auto,*"
+                        RowDefinitions="Auto,*">
+                        <Image
+                            Grid.RowSpan="2"
+                            Aspect="AspectFill"
+                            HeightRequest="60"
+                            Source="{Binding ImageUrl}"
+                            WidthRequest="60" />
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            Text="{Binding Name}" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Text="{Binding Location}"
+                            VerticalOptions="End" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+
+</ContentPage>
