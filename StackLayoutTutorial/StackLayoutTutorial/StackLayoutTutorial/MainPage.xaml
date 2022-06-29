@@ -69,17 +69,37 @@
             Text="Click Me"
             TextColor="Blue"
             WidthRequest="250" />
+        <Button Clicked="OnButtonQuestionClicked" Text="Show question" />
+        <Button Clicked="OnButtonSelectClicked" Text="Select item" />
         <Entry
             IsPassword="True"
             IsSpellCheckEnabled="False"
             IsTextPredictionEnabled="False"
             MaxLength="6"
             Placeholder="Enter password" />
-        <Editor AutoSize="TextChanges" Placeholder="Enter multi-line text here" />
+        <Editor
+            x:Name="ShowTrueFalse"
+            AutoSize="TextChanges"
+            Completed="OnCompleted"
+            Placeholder="Enter multi-line text here" />
+        <Entry x:Name="entryName" Placeholder="Enter Name" />
+        <Entry x:Name="entryAge" Placeholder="Enter Age" />
+        <Button Clicked="OnButtonAddClicked" Text="Add To Database" />
+        <CollectionView x:Name="collectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label FontSize="Large" Text="{Binding Name}" />
+                        <Label FontSize="Small" Text="{Binding Age}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
         <!--<Image
             Aspect="Fill"
             HeightRequest="300"
             Source="https://www.hexacta.com/wp-content/uploads/2016/03/xamarin.jpg" />-->
+        <!--
         <CollectionView
             ItemsSource="{Binding Monkeys}"
             SelectionChanged="OnSelectionChanged"
@@ -108,7 +128,7 @@
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-        </CollectionView>
+        </CollectionView>-->
     </StackLayout>
 
 </ContentPage>

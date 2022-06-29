@@ -15,6 +15,13 @@ namespace StackLayoutTutorial
         {
             InitializeComponent();
 
+            //InitMonkeys();
+
+            //BindingContext = this;
+        }
+
+        private void InitMonkeys()
+        {
             Monkeys = new List<Monkey>();
             Monkeys.Add(new Monkey
             {
@@ -135,17 +142,55 @@ namespace StackLayoutTutorial
                 ImageUrl = "https://tse1-mm.cn.bing.net/th/id/OIP-C.tRTDEKDMqKkkyqboyuK11AHaHr?pid=ImgDet&rs=1"
             });
 
-            BindingContext = this;
         }
 
-        private void OnButtonClicked(object sender, EventArgs e)
+        protected override async void OnAppearing()
         {
-            (sender as Button).Text = "Click Me Again!";
+            base.OnAppearing();
+
+            collectionView.ItemsSource = await App.Database.GetPeopleAsync();
+
+            ShowTrueFalse.Text = (Application.Current as App).DisplayText;
+        }
+        async void OnButtonClicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Tips", "You clicked me!", "OK");
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Monkey selectedItem = e.CurrentSelection[0] as Monkey;
+        }
+
+        async void OnButtonQuestionClicked(object sender, EventArgs e)
+        {
+            bool response = await DisplayAlert("Save?", "Please select yes or no", "Yes", "No");
+            ShowTrueFalse.Text = response ? "You select yes!" : "You select no!";
+        }
+
+        async void OnButtonSelectClicked(object sender, EventArgs e)
+        {
+            ShowTrueFalse.Text = await DisplayActionSheet("Select?", "Cancel", null, "Email", "Wechat", "Facebook");
+        }
+
+        private void OnCompleted(object sender, EventArgs e)
+        {
+            (Application.Current as App).DisplayText = ShowTrueFalse.Text;
+        }
+
+        private async void OnButtonAddClicked(object sender, EventArgs e)
+        {
+            if(!string.IsNullOrWhiteSpace(entryName.Text)&& !string.IsNullOrWhiteSpace(entryAge.Text))
+            {
+                await App.Database.SavePersonAsync(new Person
+                {
+                    Name = entryName.Text,
+                    Age = int.Parse(entryAge.Text)
+                });
+            }
+
+            entryAge.Text = entryName.Text = string.Empty;
+            collectionView.ItemsSource = await App.Database.GetPeopleAsync();
         }
     }
 }
