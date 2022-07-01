@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CameraAndLensSelect.Views.CalcPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:CameraAndLensSelect.ViewModels"
+    Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:CalcViewModel />
+    </ContentPage.BindingContext>
+    <AbsoluteLayout>
+        <Image Source="camera.png" />
+        <Entry
+            AbsoluteLayout.LayoutBounds="200,0,150,40"
+            FontSize="Small"
+            Placeholder="相机型号" />
+        <Entry
+            AbsoluteLayout.LayoutBounds="200,30,150,40"
+            FontSize="Small"
+            Placeholder="镜头焦距" />
+        <Entry
+            AbsoluteLayout.LayoutBounds="200,60,150,40"
+            FontSize="Small"
+            Placeholder="镜头型号" />
+        <Label
+            AbsoluteLayout.LayoutBounds="205,100,150,40"
+            FontSize="Small"
+            Text="相机芯片大小：" />
+        <Label
+            AbsoluteLayout.LayoutBounds="205,125,150,40"
+            FontSize="Small"
+            Text="镜头匹配芯片：" />
+        <Label
+            AbsoluteLayout.LayoutBounds="205,150,150,40"
+            FontSize="Small"
+            Text="镜头工作距离：" />
+        <Button AbsoluteLayout.LayoutBounds="205,180,150,40" Text="计算" />
+        <Entry
+            AbsoluteLayout.LayoutBounds="220,570,80,40"
+            FontSize="Small"
+            Placeholder="视场宽度" />
+        <Label
+            AbsoluteLayout.LayoutBounds="30,380,80,30"
+            FontSize="Small"
+            Text="120" />
+        <Entry
+            AbsoluteLayout.LayoutBounds="40,630,80,40"
+            FontSize="Small"
+            Placeholder="视场高度" />
+        <Label
+            AbsoluteLayout.LayoutBounds="150,300,80,40"
+            FontSize="Small"
+            Text="水平视角" />
+        <Label
+            AbsoluteLayout.LayoutBounds="95,335,80,40"
+            FontSize="Small"
+            Text="垂直视角" />
+    </AbsoluteLayout>
+</ContentPage>
