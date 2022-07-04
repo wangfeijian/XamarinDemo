@@ -1,4 +1,5 @@
-﻿using CameraAndLensSelect.Services;
+﻿using CameraAndLensSelect.Models;
+using CameraAndLensSelect.Services;
 using CameraAndLensSelect.Views;
 using System;
 using System.IO;
@@ -21,6 +22,7 @@ namespace CameraAndLensSelect
                 return database;
             }
         }
+
         public App()
         {
             InitializeComponent();

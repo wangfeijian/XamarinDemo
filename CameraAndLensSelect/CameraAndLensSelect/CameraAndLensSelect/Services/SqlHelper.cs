@@ -12,6 +12,9 @@ namespace CameraAndLensSelect.Services
     public class SqlHelper
     {
         readonly SQLiteConnection _database;
+        public CameraData SelectCamera { get; set; }
+        public LensData SelectLens { get; set; }
+        public FinalCalcData CalcDetail { get; set; }
 
         public SqlHelper()
         {
@@ -29,18 +32,6 @@ namespace CameraAndLensSelect.Services
 
             return datas;
         }
-
-        /// <summary>
-        /// 查询
-        /// </summary>
-        /// <sql>sql语句</sql>
-        /// <returns></returns>
-        //public async Task<List<LensData>> AsyncQueryLensData(string sql)
-        //{
-        //    var datas = await _database.QueryAsync<LensData>(sql);
-
-        //    return datas;
-        //}
 
     }
 }

@@ -10,14 +10,13 @@ namespace CameraAndLensSelect.Models
         public string Interface { get; set; }
     }
 
-    public class CameraShowData : BaseData
+    public class FinalCalcData
     {
-        public string Shutter { get; set; }
-        public string ChipSize { get; set; }
-        public string PixelSize { get; set; }
-        public string Frame { get; set; }
-        public string Color { get; set; }
-        public string Pixels { get; set; }
+        public double ViewCalcWidth { get; set; }
+        public double ViewCalcHeight { get; set; }
+        public int WorkingDistance { get; set; }
+        public double ViewCalcTimes { get; set; }
+        public double PixelAccuracy { get; set; }
     }
     public class CameraData : BaseData
     {
