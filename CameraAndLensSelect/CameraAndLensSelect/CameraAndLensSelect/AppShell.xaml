@@ -39,17 +39,17 @@
         <ShellContent
             Title="计算"
             ContentTemplate="{DataTemplate local:CalcPage}"
-            Icon="icon_feed.png"
+            Icon="icon_calculator.png"
             Route="CalcPage" />
         <ShellContent
             Title="相机"
             ContentTemplate="{DataTemplate local:CameraListPage}"
-            Icon="icon_feed.png"
+            Icon="icon_camera.png"
             Route="CameraListPage" />
         <ShellContent
             Title="镜头"
             ContentTemplate="{DataTemplate local:LensListPage}"
-            Icon="icon_feed.png"
+            Icon="icon_lens.png"
             Route="LensListPage" />
     </TabBar>
 </Shell>

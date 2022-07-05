@@ -18,31 +18,15 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackLayout
-            BackgroundColor="{StaticResource Accent}"
-            HorizontalOptions="Fill"
-            VerticalOptions="FillAndExpand">
-            <StackLayout
-                HorizontalOptions="Center"
-                Orientation="Horizontal"
-                VerticalOptions="Center">
-                <ContentView Padding="0,20,0,20" VerticalOptions="FillAndExpand">
-                    <Image
-                        HeightRequest="90"
-                        Source="logo.png"
-                        VerticalOptions="Center" />
-                </ContentView>
-            </StackLayout>
-        </StackLayout>
-        <ScrollView Grid.Row="1">
+        <ScrollView>
             <StackLayout
                 Padding="30,24,30,24"
                 Orientation="Vertical"
                 Spacing="10">
-                <Label FontSize="Title" Text="WangFeijian 王飞箭" />
+                <Label FontSize="Title" Text="相机镜头选型软件  V1.1" />
+                <Label FontSize="Large" Text="WangFeijian 王飞箭" />
                 <Label
                     Padding="0,0,0,0"
                     FontSize="16"

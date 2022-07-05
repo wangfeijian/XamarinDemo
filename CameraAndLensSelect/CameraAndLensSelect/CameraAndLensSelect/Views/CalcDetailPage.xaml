@@ -4,7 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:command="clr-namespace:CameraAndLensSelect.Services"
-    xmlns:vm="clr-namespace:CameraAndLensSelect.ViewModels">
+    xmlns:vm="clr-namespace:CameraAndLensSelect.ViewModels"
+    Title="{Binding Title}">
     <ContentPage.BindingContext>
         <vm:CalcDetailViewModel />
     </ContentPage.BindingContext>
@@ -154,19 +155,26 @@
                 </Grid>
                 <Grid
                     BackgroundColor="CadetBlue"
-                    ColumnDefinitions="*,*"
-                    RowDefinitions="1.2*,*,*,*,*,*,*,*">
+                    ColumnDefinitions="1.8*,*,2*,*"
+                    RowDefinitions="*,Auto,Auto,Auto,Auto,Auto,Auto,*">
                     <Label
-                        Grid.ColumnSpan="2"
+                        Grid.ColumnSpan="4"
                         Margin="10,5,10,0"
                         FontAttributes="Bold"
                         FontSize="Large"
                         Text="计算后的其它信息"
                         TextColor="White" />
-                    <Entry
+                    <Label
                         Grid.Row="1"
                         Margin="10,0"
-                        ClearButtonVisibility="WhileEditing"
+                        FontSize="Medium"
+                        Text="光圈大小："
+                        TextColor="White"
+                        VerticalOptions="Center" />
+                    <Entry
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="10,0"
                         Keyboard="Numeric"
                         Placeholder="输入光圈大小"
                         PlaceholderColor="White"
@@ -176,11 +184,18 @@
                             <command:EventToCommandBehavior Command="{Binding CalcDofCommand}" EventName="Completed" />
                         </Entry.Behaviors>
                     </Entry>
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Margin="10,0"
+                        FontSize="Medium"
+                        Text="显示器大小："
+                        TextColor="White"
+                        VerticalOptions="Center" />
                     <Entry
                         Grid.Row="1"
-                        Grid.Column="1"
+                        Grid.Column="3"
                         Margin="10,0"
-                        ClearButtonVisibility="WhileEditing"
                         Keyboard="Numeric"
                         Placeholder="输入显示器大小"
                         PlaceholderColor="White"
@@ -192,43 +207,43 @@
                     </Entry>
                     <Label
                         Grid.Row="2"
-                        Grid.ColumnSpan="2"
+                        Grid.ColumnSpan="4"
                         Margin="10,0"
                         FontSize="Medium"
-                        Text="{Binding SelectLens.Aperture, StringFormat=DOF(景深) ： \{0\} mm}"
+                        Text="{Binding Dof, StringFormat=DOF(景深) ： \{0\}}"
                         TextColor="White" />
                     <Label
                         Grid.Row="3"
-                        Grid.ColumnSpan="2"
+                        Grid.ColumnSpan="4"
                         Margin="10,0"
                         FontSize="Medium"
-                        Text="{Binding SelectLens.Aperture, StringFormat=DOF(前景深) ： \{0\} mm}"
+                        Text="{Binding DofNear, StringFormat=DOF(前景深) ： \{0\}}"
                         TextColor="White" />
                     <Label
                         Grid.Row="4"
-                        Grid.ColumnSpan="2"
+                        Grid.ColumnSpan="4"
                         Margin="10,0"
                         FontSize="Medium"
-                        Text="{Binding SelectLens.Aperture, StringFormat=DOF(后景深) ： \{0\} mm}"
+                        Text="{Binding DofFar, StringFormat=DOF(后景深) ： \{0\}}"
                         TextColor="White" />
                     <Label
                         Grid.Row="5"
-                        Grid.ColumnSpan="2"
+                        Grid.ColumnSpan="4"
                         Margin="10,0"
                         FontSize="Medium"
                         Text="{Binding CalcDetail.ViewCalcTimes, StringFormat=光学放大倍率 ： \{0\}}"
                         TextColor="White" />
                     <Label
                         Grid.Row="6"
-                        Grid.ColumnSpan="2"
+                        Grid.ColumnSpan="4"
                         Margin="10,0"
                         FontSize="Medium"
                         Text="{Binding ElecTimes, StringFormat=电子放大倍率 ： \{0\}}"
                         TextColor="White" />
                     <Label
                         Grid.Row="7"
-                        Grid.ColumnSpan="2"
-                        Margin="10,0"
+                        Grid.ColumnSpan="4"
+                        Margin="10,0,10,5"
                         FontSize="Medium"
                         Text="{Binding ShowTimes, StringFormat=显示放大倍率 ： \{0\}}"
                         TextColor="White" />

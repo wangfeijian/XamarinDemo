@@ -239,7 +239,7 @@ namespace CameraAndLensSelect.ViewModels
             double height = ChipHeight / times;
             double focalLength = _fLength / times + _fLength;
 
-            ViewCalcTimes = Math.Round(times, 6).ToString();
+            ViewCalcTimes = Math.Round(times, 3).ToString();
             ViewCalcHeight = Math.Round(height, 2).ToString();
             WorkingDistance = (int)Math.Floor(focalLength);
             PixelAccuracy = Math.Round(_pixelSize / times / 1000, 3);
@@ -254,7 +254,7 @@ namespace CameraAndLensSelect.ViewModels
             double width = ChipWidth / times;
             double focalLength = _fLength / times + _fLength;
 
-            ViewCalcTimes = Math.Round(times, 6).ToString();
+            ViewCalcTimes = Math.Round(times, 3).ToString();
             ViewCalcWidth = Math.Round(width, 2).ToString();
             WorkingDistance = (int)Math.Floor(focalLength);
             EnableDetail = true;

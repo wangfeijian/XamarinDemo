@@ -43,7 +43,7 @@ namespace CameraAndLensSelect.ViewModels
         public double DefaultApet
         {
             get { return _defaultApet; }
-            set { SetProperty(ref _defaultApet , value); }
+            set { SetProperty(ref _defaultApet, value); }
         }
 
 
@@ -68,7 +68,7 @@ namespace CameraAndLensSelect.ViewModels
         public string Dof
         {
             get { return _dof; }
-            set { SetProperty( ref _dof , value); }
+            set { SetProperty(ref _dof, value); }
         }
 
         private string _dofNear;
@@ -121,6 +121,9 @@ namespace CameraAndLensSelect.ViewModels
             //总景深 = 远端距离 - 近端距离
             double total = forward + far;
 
+            DofNear = $"{Math.Round(forward, 3)} mm";
+            DofFar = far > 1000 ? "无穷大" : $"{Math.Round(far, 3)} mm";
+            Dof = total > 1000 ? "无穷大" : $"{Math.Round(total, 3)} mm";
         }
     }
 }
