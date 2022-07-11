@@ -6,7 +6,8 @@
     Title="Note Entry">
     <StackLayout>
         <Editor
-            HeightRequest="100"
+            AutoSize="TextChanges"
+            MinimumHeightRequest="50"
             Placeholder="Enter your note"
             Text="{Binding Text}" />
         <Grid ColumnDefinitions="*,*">
