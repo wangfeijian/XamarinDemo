@@ -17,6 +17,7 @@ namespace CameraAndLensSelect.Models
         public int WorkingDistance { get; set; }
         public double ViewCalcTimes { get; set; }
         public double PixelAccuracy { get; set; }
+        public int RingLength { get; set; }
     }
     public class CameraData : BaseData
     {

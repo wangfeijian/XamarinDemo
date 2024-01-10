@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:CameraAndLensSelect.ViewModels"
+     Background="{AppThemeBinding Light=White, Dark=Black}"
     Title="{Binding Title}">
     <ContentPage.BindingContext>
         <vm:LensListViewModel />
@@ -14,6 +15,12 @@
             x:Name="SearchItem"
             Margin="5,0"
             FontSize="Small"
+            CancelButtonColor="{AppThemeBinding Light=Black,
+                                                Dark=White}"
+            PlaceholderColor="{AppThemeBinding Light=Black,
+                                               Dark=White}"
+            TextColor="{AppThemeBinding Light=Black,
+                                               Dark=White}"
             Placeholder="输入字符筛选镜头"
             SearchCommand="{Binding FilterCommand}"
             SearchCommandParameter="{Binding Source={x:Reference SearchItem}, Path=Text}"

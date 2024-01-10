@@ -1,14 +1,12 @@
 ﻿using CameraAndLensSelect.Models;
 using CameraAndLensSelect.Views;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace CameraAndLensSelect.ViewModels
 {
-    public class CalcViewModel :BaseViewModel
+    public class CalcViewModel : BaseViewModel
     {
         #region 绑定属性
         private string _cameraModel;
@@ -16,7 +14,7 @@ namespace CameraAndLensSelect.ViewModels
         public string CameraModel
         {
             get { return _cameraModel; }
-            set { SetProperty(ref _cameraModel, value);  }
+            set { SetProperty(ref _cameraModel, value); }
         }
 
         private string _lensModel;
@@ -56,13 +54,13 @@ namespace CameraAndLensSelect.ViewModels
         public double ChipWidth
         {
             get { return _chipWidth; }
-            set { SetProperty(ref _chipWidth , value);}
+            set { SetProperty(ref _chipWidth, value); }
         }
 
         public double ChipHeight
         {
             get { return _chipHeight; }
-            set { SetProperty(ref _chipHeight , value); }
+            set { SetProperty(ref _chipHeight, value); }
         }
 
         private string _hAngle;
@@ -70,7 +68,7 @@ namespace CameraAndLensSelect.ViewModels
         public string HAngle
         {
             get { return _hAngle; }
-            set { SetProperty(ref _hAngle , value); }
+            set { SetProperty(ref _hAngle, value); }
         }
 
         private string _vAngle;
@@ -78,7 +76,7 @@ namespace CameraAndLensSelect.ViewModels
         public string VAngle
         {
             get { return _vAngle; }
-            set { SetProperty(ref _vAngle , value); }
+            set { SetProperty(ref _vAngle, value); }
         }
 
         private string _viewCalcWidth;
@@ -86,7 +84,7 @@ namespace CameraAndLensSelect.ViewModels
         public string ViewCalcWidth
         {
             get { return _viewCalcWidth; }
-            set { SetProperty(ref _viewCalcWidth , value); }
+            set { SetProperty(ref _viewCalcWidth, value); }
         }
 
         private string _viewCalcHeight;
@@ -94,7 +92,7 @@ namespace CameraAndLensSelect.ViewModels
         public string ViewCalcHeight
         {
             get { return _viewCalcHeight; }
-            set { SetProperty(ref _viewCalcHeight , value); }
+            set { SetProperty(ref _viewCalcHeight, value); }
         }
 
         private string _viewCalcTimes;
@@ -102,7 +100,7 @@ namespace CameraAndLensSelect.ViewModels
         public string ViewCalcTimes
         {
             get { return _viewCalcTimes; }
-            set { SetProperty(ref _viewCalcTimes , value); }
+            set { SetProperty(ref _viewCalcTimes, value); }
         }
 
         private int _workingDistance;
@@ -110,7 +108,7 @@ namespace CameraAndLensSelect.ViewModels
         public int WorkingDistance
         {
             get { return _workingDistance; }
-            set { SetProperty(ref _workingDistance , value); }
+            set { SetProperty(ref _workingDistance, value); }
         }
 
         private double _pixelAccuracy;
@@ -118,7 +116,7 @@ namespace CameraAndLensSelect.ViewModels
         public double PixelAccuracy
         {
             get { return _pixelAccuracy; }
-            set { SetProperty(ref _pixelAccuracy , value); }
+            set { SetProperty(ref _pixelAccuracy, value); }
         }
 
         private bool _enableDetail;
@@ -126,11 +124,11 @@ namespace CameraAndLensSelect.ViewModels
         public bool EnableDetail
         {
             get { return _enableDetail; }
-            set { SetProperty(ref _enableDetail , value); }
+            set { SetProperty(ref _enableDetail, value); }
         }
         #endregion
 
-        double _pixelSize ,_fLength;
+        double _pixelSize, _fLength;
 
         #region 命令
         public ICommand CameraSelectCommand { get; }
@@ -154,7 +152,7 @@ namespace CameraAndLensSelect.ViewModels
         private void CameraSelect(object obj)
         {
             SelectCamera = QueryData<CameraData>($"SELECT * FROM camera where Model=\"{CameraModel}\"", CameraModel, "相机");
-            
+
             ShowDetial();
         }
 
@@ -177,7 +175,7 @@ namespace CameraAndLensSelect.ViewModels
             if (data.Count <= 0)
             {
                 ErrorMessage = $"未找到型号为：\"{model}\" 的{str}";
-                return  null;
+                return null;
             }
 
             ErrorMessage = string.Empty;
@@ -237,7 +235,7 @@ namespace CameraAndLensSelect.ViewModels
             double width = double.Parse(ViewCalcWidth);
             double times = ChipWidth / width;
             double height = ChipHeight / times;
-            double focalLength = _fLength / times + _fLength;
+            double focalLength = _fLength / times;
 
             ViewCalcTimes = Math.Round(times, 3).ToString();
             ViewCalcHeight = Math.Round(height, 2).ToString();
@@ -252,7 +250,7 @@ namespace CameraAndLensSelect.ViewModels
             double height = double.Parse(ViewCalcHeight);
             double times = ChipHeight / height;
             double width = ChipWidth / times;
-            double focalLength = _fLength / times + _fLength;
+            double focalLength = _fLength / times;
 
             ViewCalcTimes = Math.Round(times, 3).ToString();
             ViewCalcWidth = Math.Round(width, 2).ToString();
@@ -267,25 +265,29 @@ namespace CameraAndLensSelect.ViewModels
             double times = double.Parse(ViewCalcTimes);
             double width = ChipWidth / times;
             double height = ChipHeight / times;
-            double focalLength = _fLength / times + _fLength;
+            double focalLength = _fLength / times;
 
             ViewCalcWidth = Math.Round(width, 2).ToString();
             ViewCalcHeight = Math.Round(height, 2).ToString();
             WorkingDistance = (int)Math.Floor(focalLength);
             EnableDetail = true;
-            PixelAccuracy = Math.Round(_pixelSize / times / 1000, 3); 
+            PixelAccuracy = Math.Round(_pixelSize / times / 1000, 3);
             UpdateCalcDetail();
         }
 
         private void UpdateCalcDetail()
         {
+            double viewCalcTimes = Math.Round(double.Parse(ViewCalcTimes), 3);
+            int ringLength = (int)Math.Round((viewCalcTimes - double.Parse(SelectLens.FocalLength) / double.Parse(SelectLens.WorkingDistance)) *
+                            double.Parse(SelectLens.FocalLength));
             App.Database.CalcDetail = new FinalCalcData
             {
                 PixelAccuracy = PixelAccuracy,
-                ViewCalcTimes = Math.Round(double.Parse(ViewCalcTimes),3),
+                ViewCalcTimes = viewCalcTimes,
                 WorkingDistance = WorkingDistance,
                 ViewCalcHeight = double.Parse(ViewCalcHeight),
-                ViewCalcWidth= double.Parse(ViewCalcWidth)
+                ViewCalcWidth = double.Parse(ViewCalcWidth),
+                RingLength = ringLength
             };
         }
 

@@ -1,10 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="CameraAndLensSelect.Views.CalcDetailPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:command="clr-namespace:CameraAndLensSelect.Services"
     xmlns:vm="clr-namespace:CameraAndLensSelect.ViewModels"
+    Background="{AppThemeBinding Light=White, Dark=Black}"
     Title="{Binding Title}">
     <ContentPage.BindingContext>
         <vm:CalcDetailViewModel />
@@ -40,7 +42,8 @@
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
-                                    <Span Text="{Binding CalcDetail.ViewCalcWidth, StringFormat=视野(FOV)  Width(mm) : \{0\}}" />
+                                    <Span
+                                        Text="{Binding CalcDetail.ViewCalcWidth, StringFormat=视野(FOV)  Width(mm) : \{0\}}" />
                                     <Span Text="     " />
                                     <Span Text="{Binding CalcDetail.ViewCalcHeight, StringFormat=Height(mm) : \{0\}}" />
                                 </FormattedString.Spans>
@@ -55,7 +58,8 @@
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
-                                    <Span Text="{Binding SelectCamera.PixelWidth, StringFormat=分辨率  Width(pixel) : \{0\}}" />
+                                    <Span
+                                        Text="{Binding SelectCamera.PixelWidth, StringFormat=分辨率  Width(pixel) : \{0\}}" />
                                     <Span Text="     " />
                                     <Span Text="{Binding SelectCamera.PixelHeight, StringFormat=Height(pixel) : \{0\}}" />
                                 </FormattedString.Spans>
@@ -121,12 +125,17 @@
                         FontSize="Medium"
                         Text="{Binding SelectLens.Model, StringFormat=型号：\{0\}}"
                         TextColor="White" />
-                    <Label
-                        Grid.Row="3"
-                        Margin="10,0"
-                        FontSize="Medium"
-                        Text="{Binding SelectLens.FocalLength, StringFormat=焦距：\{0\}}"
-                        TextColor="White" />
+                    <Grid Grid.Row="3" ColumnDefinitions="2*,3*" Margin="10,0">
+                        <Label
+                            FontSize="Medium"
+                            Text="{Binding SelectLens.FocalLength, StringFormat=焦距：\{0\}}"
+                            TextColor="White" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="Medium"
+                            Text="{Binding CalcDetail.RingLength, StringFormat=接圈长度：\{0\} mm}"
+                            TextColor="White" />
+                    </Grid>
                     <Label
                         Grid.Row="4"
                         Margin="10,0"

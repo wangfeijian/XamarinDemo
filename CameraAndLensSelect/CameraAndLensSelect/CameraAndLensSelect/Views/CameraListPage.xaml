@@ -4,20 +4,29 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:CameraAndLensSelect.ViewModels"
-    Title="{Binding Title}">
+    Title="{Binding Title}"
+    Background="{AppThemeBinding Light=White,
+                                 Dark=Black}">
     <ContentPage.BindingContext>
         <vm:CameraListViewModel />
     </ContentPage.BindingContext>
 
     <StackLayout Margin="20,0">
         <SearchBar
+             
             x:Name="SearchItem"
             Margin="5,0"
+            CancelButtonColor="{AppThemeBinding Light=Black,
+                                                Dark=White}"
             FontSize="Small"
             Placeholder="输入字符筛选相机"
+            PlaceholderColor="{AppThemeBinding Light=Black,
+                                               Dark=White}"
             SearchCommand="{Binding FilterCommand}"
             SearchCommandParameter="{Binding Source={x:Reference SearchItem}, Path=Text}"
-            TextChanged="OnTextChanged" />
+            TextChanged="OnTextChanged"
+            TextColor="{AppThemeBinding Light=Black,
+                                        Dark=White}" />
         <CollectionView
             x:Name="CameraCollection"
             ItemsSource="{Binding CameraData}"
